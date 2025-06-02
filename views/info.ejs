@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>information</title>
+</head>
+<style>
+    table,th,td{
+        border: 1px solid black;
+    }
+</style>
+<body>
+    <h1>users information are:</h1>
+
+<table>
+    <th>id</th>
+<th>name</th>
+<th>email</th>
+    <% for(info of infos){%>
+<tr>
+<td><%= info.id %></td>
+<td><%= info.name %></td>
+<td><%= info.email %> </td>
+<td><form method="get" action="/users/<%= info.id %>/edit">
+    <button>edit username</button>
+</form></td>
+</tr>
+
+
+
+<%} %>
+    </table>
+
+
+
+
+    </h3>
+    
+</body>
+</html>
