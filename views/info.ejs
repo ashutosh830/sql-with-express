@@ -25,6 +25,9 @@
 <td><form method="get" action="/users/<%= info.id %>/edit">
     <button>edit username</button>
 </form></td>
+<td><form method="post" action="/users/<%= info.id %>?_method=DELETE">
+    <button>delete</button>
+</form></td>
 </tr>
 
 

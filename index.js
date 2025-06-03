@@ -84,6 +84,23 @@ connection.query(q,(err,result)=>{
     console.log(err);
 
 }});
+app.delete("/users/:id",(req,res)=>{
+let {id}=req.params;
+let q=`delete from persons where id='${id}'`;
+try{
+connection.query(q,(err,result)=>{
+    if(err) throw err;
+    res.redirect("/users");
+});
+}catch(err){
+    console.log(err);
+}
+
+
+});
+
+
+
 
 // try{
 // connection.query(q,[data],(err,result)=>{
