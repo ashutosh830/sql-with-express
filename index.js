@@ -10,6 +10,7 @@ app.set("views",path.join(__dirname,"views"));
 app.use(express.static(path.join(__dirname,"public")));
 const { v4: uuidv4 } = require('uuid');
  const methodOverride=require("method-override");
+const { name } = require('ejs');
 app.use(methodOverride("_method"));
 
 const connection =  mysql.createConnection({
@@ -28,8 +29,8 @@ app.get("/",(req,res)=>{
   try{
 connection.query(q,(err,result)=>{
     if(err) throw err;
-    let count=result[0]["count(*)"];
-    res.render("home.ejs",{count});
+    let infos=result;
+    res.render("home.ejs",{infos});
 });
 }catch(err){
     console.log(err);
@@ -98,6 +99,27 @@ connection.query(q,(err,result)=>{
 
 
 });
+app.get("/users/new",(req,res)=>{
+  
+  res.render("add.ejs");
+  
+  
+});
+app.post("/users/add",(req,res)=>{
+  let id=uuidv4();
+  let {username,email}=req.body;
+let q=`insert into persons (id,name,email) values ('${id}','${username}','${email}')`;
+try{
+connection.query(q,(err,result)=>{
+    if(err) throw err;
+    res.redirect("/users");
+});
+}catch(err){
+    console.log(err);
+}
+
+
+})
 
 
 
